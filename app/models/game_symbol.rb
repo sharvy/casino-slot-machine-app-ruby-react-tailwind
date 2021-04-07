@@ -17,6 +17,6 @@ class GameSymbol
   end
 
   def value
-    GameSymbol::SYMBOL_NAME_AND_VALUES[name]
+    GameSymbol::SYMBOL_NAMES_AND_VALUES[name]
   end
 end
