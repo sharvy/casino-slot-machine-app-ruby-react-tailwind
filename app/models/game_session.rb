@@ -6,7 +6,7 @@ class GameSession
     end
 
     def update_session!(session, jackpot_credit)
-      session[:credit] = session[:credit] - 1
+      session[:credit] = session[:credit] - GameDefaults::PER_ROLL_COST
 
       if jackpot_credit
         session[:credit] = session[:credit] + jackpot_credit
