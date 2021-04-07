@@ -7,19 +7,24 @@ class SlotMachine
     @re_roll_chance = re_roll_chance
   end
 
-  def pull
-    result = get_random_symbols
+  def roll
+    @result = get_random_symbols
 
-    if is_jackpot(result) && should_re_roll?
-      result = get_random_symbols
+    if is_jackpot?(@result) && should_re_roll?
+      @result = get_random_symbols
     end
 
-    result
+    @result
+  end
+
+  def jackpot_credit
+    return 0 unless is_jackpot?(@result)
+    GameSymbol.new(@result.first).value
   end
 
   private
 
-  def is_jackpot(array)
+  def is_jackpot?(array)
     array.uniq.size == 1
   end
 

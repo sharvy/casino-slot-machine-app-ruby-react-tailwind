@@ -8,11 +8,15 @@ class GameSymbol
     "WATERMELON" => 40,
   }
 
+  def self.all
+    SYMBOL_NAMES_AND_VALUES.keys
+  end
+
   def initialize(name)
     @name = name
   end
 
   def value
-    SYMBOL_NAME_AND_VALUES[name]
+    GameSymbol::SYMBOL_NAME_AND_VALUES[name]
   end
 end

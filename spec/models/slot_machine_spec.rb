@@ -10,9 +10,9 @@ RSpec.describe SlotMachine, type: :model do
     ) 
   }
 
-  describe "#pull" do
+  describe "#roll" do
     before(:each) do
-      @response = slot_machine.pull
+      @response = slot_machine.roll
     end
 
     it "returns 3 random symbols" do
