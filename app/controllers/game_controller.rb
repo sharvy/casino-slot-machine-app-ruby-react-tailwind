@@ -7,6 +7,7 @@ class GameController < ApplicationController
   end
 
   def start
+    GameSession.start!(session)
     render json: { credit: @game_session[:credit] }
   end
 
@@ -38,7 +39,7 @@ class GameController < ApplicationController
   end
 
   def set_game_session
-    @game_session = GameSession.start!(session)
+    @game_session = GameSession.find_or_start!(session)
   end
 
   def destroy_game_session

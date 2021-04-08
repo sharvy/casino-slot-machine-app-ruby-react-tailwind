@@ -6,8 +6,9 @@ import { GameButtons } from "./GameButtons";
 const Game = (props) => {
   const { credit, rollApi, startApi, cashoutApi } = props;
 
+  const defaultResult = ["X", "X", "X"];
   const [loading, setLoading] = useState(false);
-  const [rollResult, setRollResult] = useState(["X", "X", "X"]);
+  const [rollResult, setRollResult] = useState(defaultResult);
   const [currentCredit, setCurrentCredit] = useState(credit);
 
   const Blocks = () =>
@@ -25,6 +26,7 @@ const Game = (props) => {
     response = await response.json();
 
     setCurrentCredit(response.credit);
+    setRollResult(defaultResult);
   };
 
   const roll = async () => {
