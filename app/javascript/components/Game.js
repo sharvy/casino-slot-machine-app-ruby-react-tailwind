@@ -24,17 +24,24 @@ const Game = (props) => {
     let response = await fetch(rollApi);
     response = await response.json();
 
-    setLoading(false);
-
-    setCurrentCredit(response.credit);
-    setRollResult(response.result);
+    setTimeout(() => {
+      setLoading(false);
+      setCurrentCredit(response.credit);
+      setRollResult(response.result);
+    }, 1000)
   };
 
   return (
     <div className="container flex flex-wrap mt-40 pb-10 m-auto px-12">
       <div className="w-full">
         <div className="flex flex-wrap items-center justify-center py-4 pt-0">
-          <Blocks />
+          <table class="table-fixed w-full h-48 border-separate border border-white">
+            <tbody>
+              <tr>
+                <Blocks />
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 

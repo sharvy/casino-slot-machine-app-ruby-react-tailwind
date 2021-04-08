@@ -1,8 +1,19 @@
 import React from "react";
 import ReactLoading from "react-loading";
 
-const Loading = ({ type, color, height, width }) => (
-  <ReactLoading type={type} color={color} height={height} width={width} />
+const Loading = () => (
+  <div className="w-full text-center">
+    <div className="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 );
 
 export default Loading;
