@@ -1,5 +1,4 @@
 import React from "react";
-import ReactLoading from "react-loading";
 
 const Loading = () => (
   <div className="w-full text-center">

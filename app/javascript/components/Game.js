@@ -1,25 +1,15 @@
 import React, { useState } from "react";
-import { Block } from "./Block";
-import { CreditSummary } from "./CreditSummary";
-import { GameButtons } from "./GameButtons";
+import Blocks from "./Blocks";
+import CreditSummary from "./CreditSummary";
+import GameButtons from "./GameButtons";
+import { defaultResult } from "./utils";
 
 const Game = (props) => {
   const { credit, rollApi, startApi, cashoutApi } = props;
 
-  const defaultResult = ["X", "X", "X"];
   const [loading, setLoading] = useState(false);
   const [rollResult, setRollResult] = useState(defaultResult);
   const [currentCredit, setCurrentCredit] = useState(credit);
-
-  const Blocks = () =>
-    rollResult.map((name, index) => (
-      <Block
-        key={`${name}-${index}`}
-        loading={loading}
-        position={index + 1}
-        name={name}
-      />
-    ));
 
   const start = async () => {
     let response = await fetch(startApi);
@@ -50,17 +40,7 @@ const Game = (props) => {
 
   return (
     <div className="container flex flex-wrap mt-40 pb-10 m-auto px-12">
-      <div className="w-full">
-        <div className="flex flex-wrap items-center justify-center py-4 pt-0">
-          <table className="table-fixed w-full h-48 border-separate border border-white">
-            <tbody>
-              <tr>
-                <Blocks />
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <Blocks rollResult={rollResult} loading={loading} />
 
       <GameButtons
         currentCredit={currentCredit}

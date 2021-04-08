@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 
-export const Block = ({ name, position, loading }) => {
+const Block = ({ name, position, loading }) => {
   const [delayed, setDelayed] = useState(true);
 
   useEffect(() => {
@@ -29,3 +29,5 @@ export const Block = ({ name, position, loading }) => {
     </td>
   );
 };
+
+export default Block;
