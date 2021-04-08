@@ -24,12 +24,11 @@ export const GameButtons = ({ currentCredit, start, roll, cashout }) => {
         onClick={cashout}
         className="p-5 m-2 text-2xl font-semibold text-center text-white uppercase bg-black border border-transparent rounded"
       >
-        CASH OUT
+        {currentCredit ? "CASH OUT" : "Exit"}
       </button>
     </div>
   );
 
-  // if (currentCredit) return <RollAndCashout />;
-  // else return <StartButton />;
-  return <StartButton />;
+  if (currentCredit) return <RollAndCashout />;
+  else return <StartButton />;
 };

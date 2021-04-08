@@ -4,12 +4,11 @@ class SlotMachine
   INITIAL_CREDIT = 10
   PER_ROLL_COST = 1
 
-  attr_reader :credit, :game_symbols, :re_roll_chance
+  attr_reader :credit, :game_symbols
 
   def initialize(credit:, game_symbols:)
     @credit = credit
     @game_symbols = game_symbols
-    @re_roll_chance = re_roll_chance(credit)
   end
 
   def roll
@@ -31,7 +30,7 @@ class SlotMachine
 
   private
 
-  def re_roll_chance(credit)
+  def re_roll_chance
     return 30 if credit >= 40 && credit <= 60
     return 60 if credit > 60
 

@@ -7,7 +7,7 @@ class GameController < ApplicationController
   end
 
   def start
-    render_credit
+    render json: { credit: @game_session[:credit] }
   end
 
   def roll
@@ -20,6 +20,7 @@ class GameController < ApplicationController
   end
 
   def cashout
+    destroy_game_session
     render_credit
   end
 

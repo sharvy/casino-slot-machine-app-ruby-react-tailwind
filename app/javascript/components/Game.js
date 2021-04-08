@@ -33,12 +33,10 @@ const Game = (props) => {
     response = await response.json();
     setLoading(false);
 
-    if (response.ok) {
+    if (!response.error) {
       setCurrentCredit(response.credit);
       setRollResult(response.result);
-    } else {
-      console.log(response);
-    }
+    } else console.log(response);
   };
 
   const cashout = async () => {
