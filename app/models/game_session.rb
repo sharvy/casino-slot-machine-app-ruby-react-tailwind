@@ -5,8 +5,12 @@ class GameSession
       session
     end
 
+    def started?(session)
+      session[:credit]
+    end
+
     def update_session!(session, jackpot_credit)
-      session[:credit] = session[:credit] - GameDefaults::PER_ROLL_COST
+      session[:credit] = session[:credit] - SlotMachine::PER_ROLL_COST
 
       if jackpot_credit
         session[:credit] = session[:credit] + jackpot_credit

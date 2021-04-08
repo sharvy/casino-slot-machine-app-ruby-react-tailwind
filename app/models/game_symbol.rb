@@ -2,10 +2,10 @@ class GameSymbol
   attr_reader :name
 
   SYMBOL_NAMES_AND_VALUES = {
-    "CHERRY" => 10,
-    "LEMON" => 20,
-    "ORANGE" => 30,
-    "WATERMELON" => 40,
+    "C" => 10,
+    "L" => 20,
+    "O" => 30,
+    "W" => 40,
   }
 
   def self.all

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Block } from "./Block";
+import { CreditSummary } from "./CreditSummary";
+import { GameButtons } from "./GameButtons";
 
 const Game = (props) => {
-  const { credit, rollApi } = props;
+  const { credit, rollApi, startApi, cashoutApi } = props;
 
   const [loading, setLoading] = useState(false);
   const [rollResult, setRollResult] = useState(["X", "X", "X"]);
@@ -18,24 +20,39 @@ const Game = (props) => {
       />
     ));
 
-  const roll = async () => {
-    setLoading(true);
-
-    let response = await fetch(rollApi);
+  const start = async () => {
+    let response = await fetch(startApi);
     response = await response.json();
 
-    setTimeout(() => {
-      setLoading(false);
+    setCurrentCredit(response.credit);
+  };
+
+  const roll = async () => {
+    setLoading(true);
+    let response = await fetch(rollApi);
+    response = await response.json();
+    setLoading(false);
+
+    if (response.ok) {
       setCurrentCredit(response.credit);
       setRollResult(response.result);
-    }, 1000)
+    } else {
+      console.log(response);
+    }
+  };
+
+  const cashout = async () => {
+    let response = await fetch(cashoutApi);
+    response = await response.json();
+
+    window.location = "/";
   };
 
   return (
     <div className="container flex flex-wrap mt-40 pb-10 m-auto px-12">
       <div className="w-full">
         <div className="flex flex-wrap items-center justify-center py-4 pt-0">
-          <table class="table-fixed w-full h-48 border-separate border border-white">
+          <table className="table-fixed w-full h-48 border-separate border border-white">
             <tbody>
               <tr>
                 <Blocks />
@@ -45,21 +62,14 @@ const Game = (props) => {
         </div>
       </div>
 
-      <div className="w-full text-center mt-20">
-        <button
-          onClick={roll}
-          className="p-5 px-20 m-2 text-2xl font-semibold text-center text-white uppercase bg-black border border-transparent rounded"
-        >
-          Roll
-        </button>
-        <button className="p-5 m-2 text-2xl font-semibold text-center text-white uppercase bg-black border border-transparent rounded">
-          Cashout
-        </button>
-      </div>
+      <GameButtons
+        currentCredit={currentCredit}
+        roll={roll}
+        cashout={cashout}
+        start={start}
+      />
 
-      <div className="w-full text-center font-semibold text-5xl">
-        Credit: {currentCredit}
-      </div>
+      {currentCredit > 0 && <CreditSummary currentCredit={currentCredit} />}
     </div>
   );
 };

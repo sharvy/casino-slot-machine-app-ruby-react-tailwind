@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe "Games", type: :request do
-  describe "GET /index" do
+  describe "GET /" do
     it "returns http success" do
-      get "/game/index"
+      get "/"
       expect(response).to have_http_status(:success)
     end
   end
@@ -18,7 +18,7 @@ RSpec.describe "Games", type: :request do
       get "/roll"
 
       parsed_json = JSON.parse(response.body)
-      
+
       expect(parsed_json["credit"]).to be_a_kind_of(Integer)
       expect(parsed_json["result"]).to be_a_kind_of(Array)
     end

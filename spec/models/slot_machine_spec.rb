@@ -1,14 +1,19 @@
 require "rails_helper"
 
-RSpec.describe SlotMachine, type: :model do
+RSpec.describe SlotMachine do
   let(:credit) { 10 }
   let(:valid_symbols) { GameSymbol::SYMBOL_NAMES_AND_VALUES.keys }
-  let(:slot_machine) { SlotMachine.new(
-      credit: credit, 
-      game_symbols: valid_symbols, 
-      re_roll_chance: GameDefaults.re_roll_chance(credit)
-    ) 
+  let(:slot_machine) {
+    SlotMachine.new(
+      credit: credit,
+      game_symbols: valid_symbols,
+    )
   }
+
+  it "has constants INITIAL_CREDIT and PER_ROLL_COST" do
+    expect(SlotMachine::INITIAL_CREDIT).not_to be_nil
+    expect(SlotMachine::PER_ROLL_COST).not_to be_nil
+  end
 
   describe "#roll" do
     before(:each) do
