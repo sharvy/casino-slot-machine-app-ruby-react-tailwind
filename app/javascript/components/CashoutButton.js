@@ -17,7 +17,7 @@ const CashoutButton = ({ cashout }) => {
       onMouseOver={addStyle}
       disabled={disabledCashout}
       onClick={cashout}
-      className="p-5 m-2 text-2xl font-semibold text-center text-white uppercase bg-black border border-transparent rounded"
+      className="p-5 m-2 text-2xl font-semibold text-center text-white bg-black border border-transparent rounded"
     >
       CASH OUT
     </button>
