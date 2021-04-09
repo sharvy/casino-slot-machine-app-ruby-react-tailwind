@@ -31,6 +31,7 @@ cd casino-slot-machine-app-ruby-react-tailwind
 bundle
 rails s
 ```
+visit [http://localhost:3000](http://localhost:3000) on your web browser
 # To Run Tests
 RSpec tests:
 ```
