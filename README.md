@@ -1,5 +1,12 @@
 # Casino Slot Machine App 
-Built using Ruby on Rails, ReactJS, TailwindCSS and [deployed to heroku](https://slot-machine-2021.herokuapp.com/).
+Requirements
+```
+Ruby 2.7.2
+Ruby on Rails 6.1
+ReactJS 17
+TailwindCSS 2
+```
+# [DEMO at HEROKU](https://slot-machine-2021.herokuapp.com/)
 # Task Description
 When a user opens the app, a session is created on the server, and they have 10 starting credits.
 ## Server side:
@@ -16,3 +23,24 @@ There is a cash-out endpoint which moves credits from the game session to user's
 - After receiving response from server, the first sign should spin for 1 second more and then display the result, then display the second sign at 2 seconds, then the third sign at 3 seconds.
 - If the user wins the round, their session credit is increased by the amount from the server response, else it is deducted by 1.
 - Include a button on the screen that says "CASH OUT", but when the user hovers it, there is 50% chance that button moves in a random direction by 300px, and 40% chance that it becomes unclickable (this roll should be done on client side). If they succeed to hit it, credits from session are moved to their account.
+
+# Start The Game
+```
+git clone git@github.com:sharvy/casino-slot-machine-app-ruby-react-tailwind.git
+cd casino-slot-machine-app-ruby-react-tailwind
+bundle
+rails s
+```
+# To Run Tests
+RSpec tests:
+```
+rspec
+```
+Cypress tests:
+```
+# In one tab
+CYPRESS=1 bin/rails server -p 5017
+
+# In another tab
+yarn cypress open --project ./spec
+```
