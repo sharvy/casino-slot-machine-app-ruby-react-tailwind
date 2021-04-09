@@ -1,17 +1,17 @@
 class GameSession
   class << self
-    def find_or_start!(session)
-      session[:credit] ||= SlotMachine::INITIAL_CREDIT
+    def start!(session, initial_credit)
+      session[:credit] = initial_credit
       session
     end
-
-    def start!(session)
-      session[:credit] = SlotMachine::INITIAL_CREDIT
+    
+    def find_or_start!(session, initial_credit)
+      session[:credit] ||= initial_credit
       session
     end
 
     def started?(session)
-      session[:credit]
+      !!session[:credit]
     end
 
     def update_session!(session, jackpot_credit)

@@ -4,7 +4,8 @@ class SlotMachine
   INITIAL_CREDIT = 10
   PER_ROLL_COST = 1
 
-  attr_reader :credit, :game_symbols, :result
+  attr_reader :credit, :game_symbols
+  attr_accessor :result
 
   def initialize(credit:, game_symbols:)
     @credit = credit
@@ -15,10 +16,10 @@ class SlotMachine
   def roll
     raise NotEnoughCreditError if credit < PER_ROLL_COST
 
-    result = get_random_symbols
+    @result = get_random_symbols
 
-    if is_jackpot? && should_re_roll?
-      result = get_random_symbols
+    if is_jackpot? && Utils.take_a_chance?(percentage_of_chance)
+      @result = get_random_symbols
     end
 
     result
@@ -31,7 +32,7 @@ class SlotMachine
 
   private
 
-  def re_roll_chance
+  def percentage_of_chance
     return 30 if credit >= 40 && credit <= 60
     return 60 if credit > 60
 
@@ -40,10 +41,6 @@ class SlotMachine
 
   def is_jackpot?
     result.uniq.size == 1
-  end
-
-  def should_re_roll?
-    rand <= re_roll_chance / 100.0
   end
 
   def get_random_symbols

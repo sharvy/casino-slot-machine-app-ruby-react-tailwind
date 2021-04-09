@@ -7,12 +7,13 @@ class GameController < ApplicationController
   end
 
   def start
-    GameSession.start!(session)
+    GameSession.start!(session, SlotMachine::INITIAL_CREDIT)
     render json: { credit: @game_session[:credit] }
   end
 
   def roll
     result = slot_machine.roll
+    # byebug
     @game_session = GameSession.update_session!(@game_session, slot_machine.jackpot_credit)
 
     render json: { credit: @game_session[:credit], result: result }
@@ -39,7 +40,7 @@ class GameController < ApplicationController
   end
 
   def set_game_session
-    @game_session = GameSession.find_or_start!(session)
+    @game_session = GameSession.find_or_start!(session, SlotMachine::INITIAL_CREDIT)
   end
 
   def destroy_game_session

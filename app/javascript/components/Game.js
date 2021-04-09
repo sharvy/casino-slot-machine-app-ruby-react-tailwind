@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Blocks from "./Blocks";
 import CreditSummary from "./CreditSummary";
 import GameButtons from "./GameButtons";
-import { defaultResult } from "./utils";
+import { defaultResult } from "./settings";
 
 const Game = (props) => {
   const { credit, rollApi, startApi, cashoutApi } = props;

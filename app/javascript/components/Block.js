@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
+import { secondDifference } from "./settings";
 
 const Block = ({ name, position, loading }) => {
   const [delayed, setDelayed] = useState(true);
@@ -7,7 +8,7 @@ const Block = ({ name, position, loading }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setDelayed(false);
-    }, position * 1000);
+    }, position * secondDifference * 1000);
 
     return () => clearTimeout(timeout);
   }, []);
